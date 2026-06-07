@@ -1,4 +1,4 @@
-
+matplotlib
 streamlit
 pandas
 numpy
@@ -8,7 +8,7 @@ joblib
 pulp
 
 streamlit
-matplotlib
+
 
 
 
