@@ -1,6 +1,0 @@
-# Train Model
-python forecast_model.py
-#Run Optimization
-python resource_optimizer.py
-#Launch Dashboard
-streamlit run dashboard.py
