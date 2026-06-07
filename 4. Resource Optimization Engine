@@ -1,0 +1,37 @@
+
+from pulp import *
+
+# Example predicted demand
+locations = ['Bangalore', 'Chennai', 'Hyderabad']
+demand = {
+    'Bangalore': 20,
+    'Chennai': 12,
+    'Hyderabad': 15
+}
+
+# Available workforce
+available_engineers = 40
+
+# Optimization problem
+problem = LpProblem("Workforce_Allocation", LpMinimize)
+
+# Variables
+allocation = LpVariable.dicts("Engineers", locations, lowBound=0, cat='Integer')
+
+# Objective
+problem += lpSum([allocation[l] for l in locations])
+
+# Constraints
+for l in locations:
+    problem += allocation[l] >= demand[l]
+
+problem += lpSum([allocation[l] for l in locations]) <= available_engineers
+
+# Solve
+problem.solve()
+
+# Output
+print("Optimal Workforce Allocation")
+
+for l in locations:
+    print(f"{l}: {allocation[l].varValue} engineers")
