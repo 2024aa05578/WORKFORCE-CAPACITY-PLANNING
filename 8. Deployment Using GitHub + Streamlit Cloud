@@ -1,0 +1,7 @@
+#Step 1 — Push to GitHub
+
+git add .
+git commit -m "AI Workforce Planning"
+git push
+#Step 2 — Deploy
+https://share.streamlit.io
