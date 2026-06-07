@@ -1,0 +1,4 @@
+#Run Locally
+python train_model.py
+#Run Streamlit:
+streamlit run app.py
