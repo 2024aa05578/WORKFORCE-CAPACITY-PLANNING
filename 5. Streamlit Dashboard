@@ -1,0 +1,40 @@
+
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import joblib
+
+# Load model
+model = joblib.load("workforce_forecast_model.pkl")
+
+st.title("AI Enabled Workforce & Capacity Planning")
+
+uploaded_file = st.file_uploader("Upload Workforce CSV", type=["csv"])
+
+if uploaded_file:
+    df = pd.read_csv(uploaded_file)
+
+    df['Date'] = pd.to_datetime(df['Date'])
+    df['Day'] = df['Date'].dt.day
+    df['Month'] = df['Date'].dt.month
+    df['Location'] = df['Location'].astype('category').cat.codes
+
+    features = df[['Location', 'Available_Engineers',
+                   'Skill_Level', 'Day', 'Month']]
+
+    predictions = model.predict(features)
+
+    df['Predicted_Workload'] = predictions
+
+    st.subheader("Forecasted Demand")
+    st.dataframe(df)
+
+    # Visualization
+    fig, ax = plt.subplots()
+
+    ax.plot(df['Predicted_Workload'], marker='o')
+    ax.set_title("Predicted Workforce Demand")
+    ax.set_xlabel("Records")
+    ax.set_ylabel("Workload")
+
+    st.pyplot(fig)
