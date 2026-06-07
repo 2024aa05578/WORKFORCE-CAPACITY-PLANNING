@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import joblib
-import matplotlib.pyplot 
+import matplotlib.pyplot as plt
 
 from optimizer import optimize_resources
 
