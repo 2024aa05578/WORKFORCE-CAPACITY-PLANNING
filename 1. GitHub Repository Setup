@@ -1,0 +1,10 @@
+#Create a GitHub repo:
+AI-Enabled-Workforce-Planning
+#Push code:
+
+git init
+git add .
+git commit -m "Initial Commit"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/AI-Enabled-Workforce-Planning.git
+git push -u origin main
